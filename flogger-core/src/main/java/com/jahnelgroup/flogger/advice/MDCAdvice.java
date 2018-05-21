@@ -2,10 +2,7 @@ package com.jahnelgroup.flogger.advice;
 
 import com.jahnelgroup.flogger.annotation.*;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 
 import java.lang.reflect.Field;
@@ -14,7 +11,9 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
 @Aspect
-public class MDCAdvice {
+public abstract class MDCAdvice {
+
+    protected abstract void put(String key, String value);
 
     /**
      * All methods that have one parameter annotated with @MDCParam.
@@ -171,7 +170,7 @@ public class MDCAdvice {
             }
         }
         if (!addedMDCData) {
-            System.out.println(key + ": " + arg.toString());
+            put(key, arg.toString());
         }
     }
 
@@ -280,7 +279,7 @@ public class MDCAdvice {
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-        // Don't leave it accessible
+            // Don't leave it accessible
             method.setAccessible(accessibility);
 
         return value;
@@ -298,7 +297,7 @@ public class MDCAdvice {
         if (value != null) {
             extractMDCData(key, value);
         } else {
-            System.out.println(key + ": NULL");
+            put(key, "NULL");
         }
     }
 
@@ -312,9 +311,9 @@ public class MDCAdvice {
      */
     private void registerToMDC(String key, String value) {
         if (value != null) {
-            System.out.println(key + ": " + value);
+            put(key, value);
         } else {
-            System.out.println(key + ": NULL");
+            put(key, "NULL");
         }
     }
 
