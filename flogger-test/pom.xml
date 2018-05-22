@@ -13,21 +13,11 @@
     <java.version>1.8</java.version>
 
     <aspectj.version>1.8.13</aspectj.version>
+
     <main-class>com.jahnelgroup.flogger.App</main-class>
   </properties>
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-          <!-- IMPORTANT -->
-          <useIncrementalCompilation>false</useIncrementalCompilation>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
@@ -39,7 +29,7 @@
           <Xlint>ignore</Xlint>
           <complianceLevel>${java.version}</complianceLevel>
           <encoding>${project.build.sourceEncoding}</encoding>
-          <!--<verbose>true</verbose> -->
+          <verbose>true</verbose>
           <!--<warn>constructorName,packageDefaultMethod,deprecation,maskedCatchBlocks,unusedLocals,unusedArguments,unusedImport</warn> -->
           <aspectLibraries>
             <aspectLibrary>
@@ -54,21 +44,20 @@
         </configuration>
         <executions>
           <execution>
-            <!-- IMPORTANT -->
-            <phase>process-sources</phase>
             <goals>
               <goal>compile</goal>
-              <goal>test-compile</goal>
             </goals>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjtools</artifactId>
-            <version>${aspectj.version}</version>
-          </dependency>
-        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -82,22 +71,16 @@
   </build>
 
   <dependencies>
-
+    <dependency>
+      <groupId>com.jahnelgroup.flogger</groupId>
+      <artifactId>flogger-logback</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <version>${aspectj.version}</version>
       <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.jahnelgroup.flogger</groupId>
-      <artifactId>flogger-core</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.jahnelgroup.flogger</groupId>
-      <artifactId>flogger-logback</artifactId>
-      <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

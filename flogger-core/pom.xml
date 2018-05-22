@@ -52,16 +52,10 @@
     <java.version>1.8</java.version>
 
     <aspectj.version>1.8.13</aspectj.version>
-      <aspectjweaver.version>1.8.11</aspectjweaver.version>
+    <aspectjweaver.version>1.8.11</aspectjweaver.version>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjrt</artifactId>
-        <version>${aspectj.version}</version>
-        <scope>runtime</scope>
-    </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
@@ -76,6 +70,22 @@
     </dependency>
   </dependencies>
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>aspectj-maven-plugin</artifactId>
+          <version>1.7</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.aspectj</groupId>
+              <artifactId>aspectjtools</artifactId>
+              <version>${aspectj.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

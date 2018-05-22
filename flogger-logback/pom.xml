@@ -46,95 +46,35 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
-
-    <aspectj.version>1.8.13</aspectj.version>
-    <aspectjweaver.version>1.8.11</aspectjweaver.version>
   </properties>
 
-
   <dependencies>
+      <dependency>
+          <groupId>com.jahnelgroup.flogger</groupId>
+          <artifactId>flogger-core</artifactId>
+          <version>1.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>1.2.3</version>
+      </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.12</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.jahnelgroup.flogger</groupId>
-      <artifactId>flogger-core</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
-    </dependency>
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjrt</artifactId>
-      <version>${aspectj.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.aspectj</groupId>
-      <artifactId>aspectjweaver</artifactId>
-      <version>${aspectjweaver.version}</version>
     </dependency>
   </dependencies>
 
   <build>
-    <resources>
-      <resource>
-        <directory>${project.basedir}/src/main/resources</directory>
-      </resource>
-    </resources>
+      <resources>
+          <resource>
+              <directory>${project.basedir}/src/main/resources</directory>
+          </resource>
+      </resources>
     <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>aspectj-maven-plugin</artifactId>
-        <version>1.7</version>
-        <configuration>
-          <!--<showWeaveInfo>true</showWeaveInfo> -->
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-          <Xlint>ignore</Xlint>
-          <complianceLevel>${java.version}</complianceLevel>
-          <encoding>${project.build.sourceEncoding}</encoding>
-          <!--<verbose>true</verbose> -->
-          <!--<warn>constructorName,packageDefaultMethod,deprecation,maskedCatchBlocks,unusedLocals,unusedArguments,unusedImport</warn> -->
-          <aspectLibraries>
-            <aspectLibrary>
-              <groupId>com.jahnelgroup.flogger</groupId>
-              <artifactId>flogger-core</artifactId>
-            </aspectLibrary>
-          </aspectLibraries>
-        </configuration>
-        <executions>
-          <execution>
-            <!-- IMPORTANT -->
-            <phase>process-sources</phase>
-            <goals>
-              <goal>compile</goal>
-              <goal>test-compile</goal>
-            </goals>
-          </execution>
-        </executions>
-        <dependencies>
-          <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjtools</artifactId>
-            <version>${aspectj.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.4.0</version>
-        <configuration>
-          <mainClass>com.jahnelgroup.flogger.App</mainClass>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
