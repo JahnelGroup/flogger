@@ -7,6 +7,9 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -15,13 +18,16 @@ import static com.jahnelgroup.flogger.utils.ReflectionUtils.getMethod;
 import static com.jahnelgroup.flogger.utils.ReflectionUtils.getParameterNames;
 
 @Aspect
-public abstract class BindParamAspectImpl implements BindParamAspect {
+public class BindParamAspectImpl implements BindParamAspect {
 
-    @Pointcut
-    public abstract void anyMethodWithBindParams();
+    private static final Logger logger = LoggerFactory.getLogger(BindParamAspectImpl.class);
+
+    @Pointcut("execution(* *(.., @com.jahnelgroup.flogger.BindParam (*), ..))")
+    public void anyMethodWithBindParams() {}
 
     @Before(value = "anyMethodWithBindParams()", argNames = "jp")
     public void addBoundParamsToMDC(JoinPoint jp) throws FloggerException {
+        logger.info("ADDING BIND PARAMS TO MDC");
         Object[] args = jp.getArgs();
         Method method = getMethod(jp);
         Parameter[] parameters = method.getParameters();
@@ -32,9 +38,9 @@ public abstract class BindParamAspectImpl implements BindParamAspect {
                 // Call toString() on the parameter and add it to the MDC
                 // with key= value() on annotation or the parameter's name
                 if (!anno.value().isEmpty()) {
-                    put(anno.value(), args[i].toString());
+                    MDC.put(anno.value(), args[i].toString());
                 } else {
-                    put(parameterNames[i], args[i].toString());
+                    MDC.put(parameterNames[i], args[i].toString());
                 }
             }
         }

@@ -2,7 +2,7 @@ package com.jahnelgroup.flogger;
 
 import org.aspectj.lang.JoinPoint;
 
-public interface BindParamAspect extends BindingAspect {
+public interface BindParamAspect {
 
     void anyMethodWithBindParams();
 

@@ -12,7 +12,8 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
 
-    <aspectj.version>1.8.13</aspectj.version>
+    <aspectj.version>1.8.2</aspectj.version>
+    <aspectjweaver.version>1.8.11</aspectjweaver.version>
 
     <main-class>com.jahnelgroup.flogger.App</main-class>
   </properties>
@@ -35,10 +36,6 @@
             <aspectLibrary>
               <groupId>com.jahnelgroup.flogger</groupId>
               <artifactId>flogger-core</artifactId>
-            </aspectLibrary>
-            <aspectLibrary>
-              <groupId>com.jahnelgroup.flogger</groupId>
-              <artifactId>flogger-logback</artifactId>
             </aspectLibrary>
           </aspectLibraries>
         </configuration>
@@ -66,6 +63,18 @@
         <configuration>
           <mainClass>${main-class}</mainClass>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>
@@ -73,13 +82,24 @@
   <dependencies>
     <dependency>
       <groupId>com.jahnelgroup.flogger</groupId>
-      <artifactId>flogger-logback</artifactId>
+      <artifactId>flogger-log4j2</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jahnelgroup.flogger</groupId>
+      <artifactId>flogger-core</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <version>${aspectj.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectjweaver.version}</version>
       <scope>runtime</scope>
     </dependency>
   </dependencies>

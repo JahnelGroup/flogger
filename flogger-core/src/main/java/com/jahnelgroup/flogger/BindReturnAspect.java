@@ -2,7 +2,7 @@ package com.jahnelgroup.flogger;
 
 import org.aspectj.lang.JoinPoint;
 
-public interface BindReturnAspect extends BindingAspect {
+public interface BindReturnAspect {
 
     void anyMethodAnnotatedWithBindReturn(BindReturn bindReturn);
 

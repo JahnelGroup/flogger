@@ -51,7 +51,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
 
-    <aspectj.version>1.8.13</aspectj.version>
+    <aspectj.version>1.8.2</aspectj.version>
     <aspectjweaver.version>1.8.11</aspectjweaver.version>
   </properties>
 
@@ -68,6 +68,12 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.25</version>
+    </dependency>
   </dependencies>
   <build>
     <pluginManagement>
@@ -81,6 +87,11 @@
               <groupId>org.aspectj</groupId>
               <artifactId>aspectjtools</artifactId>
               <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.aspectj</groupId>
+              <artifactId>aspectjweaver</artifactId>
+              <version>${aspectjweaver.version}</version>
             </dependency>
           </dependencies>
         </plugin>
