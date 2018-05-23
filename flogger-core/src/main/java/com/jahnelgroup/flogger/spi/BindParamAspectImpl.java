@@ -22,9 +22,11 @@ public class BindParamAspectImpl implements BindParamAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(BindParamAspectImpl.class);
 
+    @Override
     @Pointcut("execution(* *(.., @com.jahnelgroup.flogger.BindParam (*), ..))")
     public void anyMethodWithBindParams() {}
 
+    @Override
     @Before(value = "anyMethodWithBindParams()", argNames = "jp")
     public void addBoundParamsToMDC(JoinPoint jp) throws FloggerException {
         logger.info("ADDING BIND PARAMS TO MDC");

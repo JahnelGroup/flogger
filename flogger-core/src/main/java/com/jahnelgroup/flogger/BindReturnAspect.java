@@ -6,6 +6,6 @@ public interface BindReturnAspect {
 
     void anyMethodAnnotatedWithBindReturn(BindReturn bindReturn);
 
-    void addBoundReturnToMDC(JoinPoint jp, Object retVal, BindReturn bindReturn);
+    void addBoundReturnToMDC(JoinPoint jp, Object retVal, BindReturn BindReturncd ) throws FloggerException;
 
 }
