@@ -18,7 +18,7 @@ public final class ReflectionUtils {
         String className = methodSignature.getDeclaringTypeName();
         Class[] parameterTypes = methodSignature.getParameterTypes();
         try {
-            return Class.forName(className).getMethod(methodSignature.getName(), parameterTypes);
+            return Class.forName(className).getDeclaredMethod(methodSignature.getName(), parameterTypes);
         } catch(ClassNotFoundException e) {
             throw new FloggerException(String.format(CLASS_NOT_FOUND_EXCEPTION_MSG, className), e);
         } catch (NoSuchMethodException e) {
