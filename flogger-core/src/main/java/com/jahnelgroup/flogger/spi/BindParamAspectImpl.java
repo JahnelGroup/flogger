@@ -7,8 +7,6 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
 import java.lang.reflect.Method;
@@ -20,16 +18,14 @@ import static com.jahnelgroup.flogger.utils.ReflectionUtils.getParameterNames;
 @Aspect
 public class BindParamAspectImpl implements BindParamAspect {
 
-    private static final Logger logger = LoggerFactory.getLogger(BindParamAspectImpl.class);
-
     @Override
     @Pointcut("execution(* *(.., @com.jahnelgroup.flogger.BindParam (*), ..))")
-    public void anyMethodWithBindParams() {}
+    public void anyMethodWithBindParams() {
+    }
 
     @Override
     @Before(value = "anyMethodWithBindParams()", argNames = "jp")
     public void addBoundParamsToMDC(JoinPoint jp) throws FloggerException {
-        logger.info("ADDING BIND PARAMS TO MDC");
         Object[] args = jp.getArgs();
         Method method = getMethod(jp);
         Parameter[] parameters = method.getParameters();

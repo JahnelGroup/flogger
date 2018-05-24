@@ -19,7 +19,7 @@ public final class ReflectionUtils {
         Class[] parameterTypes = methodSignature.getParameterTypes();
         try {
             return Class.forName(className).getDeclaredMethod(methodSignature.getName(), parameterTypes);
-        } catch(ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             throw new FloggerException(String.format(CLASS_NOT_FOUND_EXCEPTION_MSG, className), e);
         } catch (NoSuchMethodException e) {
             throw new FloggerException(String.format(

@@ -16,7 +16,8 @@ public class BindReturnAspectImpl implements BindReturnAspect {
 
     @Override
     @Pointcut("execution(* *(..)) && @annotation(BindReturn)")
-    public void anyMethodAnnotatedWithBindReturn(BindReturn BindReturn) {}
+    public void anyMethodAnnotatedWithBindReturn(BindReturn BindReturn) {
+    }
 
     @Override
     @AfterReturning(value = "anyMethodAnnotatedWithBindReturn(BindReturn)", argNames = "jp,retVal,BindReturn", returning = "retVal")
