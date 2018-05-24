@@ -18,7 +18,7 @@ public class App {
         logger.info("testing4");
     }
 
-    public static void zot(@BindParam("param test") int test) {
+    public static void zot(@BindParam(value = "expandTest", expand = true) Expanded expanded) {
         logger.info("testing6");
     }
 
@@ -30,7 +30,7 @@ public class App {
         bar();
 
         logger.info("testing5");
-        zot(123);
+        zot(new Expanded());
 
         logger.info("testing7");
     }

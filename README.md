@@ -37,6 +37,46 @@ To add the return value of a method to the MDC, annotate the method with `@BindR
 
 The key, in which values are stored, in the MDC can be customized by the `value` field on both annotations.
 
+### Expansion
+
+You can expand an object before it gets added to the MDC by setting `expand=true` in the annotations.
+
+This will add the object's field values and method values (only methods that take 0 parameters) 
+to the MDC intead of calling `.toString()` on the object.
+
+#### Example
+
+```
+public class Expanded {
+    
+    private String field = "field"
+
+    private String method() {
+        return "method";    
+    }
+    
+    public String toString() {
+        return "expanded.toString()";
+    }
+}
+
+...
+
+public void method(@BindParam(expand=?) Expanded expanded) {...}
+```
+
+When `expand=false` the MDC contains :
+
+```
+{expanded=expanded.toString()}
+```
+
+When `expand=true` the MDC contains:
+
+```
+{field=field, method=method}
+```
+
 ## License
 
 [MIT © Jahnel Group](LICENSE)
