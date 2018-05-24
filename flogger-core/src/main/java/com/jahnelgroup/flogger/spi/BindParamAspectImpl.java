@@ -2,12 +2,12 @@ package com.jahnelgroup.flogger.spi;
 
 import com.jahnelgroup.flogger.BindParam;
 import com.jahnelgroup.flogger.BindParamAspect;
+import com.jahnelgroup.flogger.BindingAspect;
 import com.jahnelgroup.flogger.FloggerException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.slf4j.MDC;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -16,7 +16,7 @@ import static com.jahnelgroup.flogger.utils.ReflectionUtils.getMethod;
 import static com.jahnelgroup.flogger.utils.ReflectionUtils.getParameterNames;
 
 @Aspect
-public class BindParamAspectImpl implements BindParamAspect {
+public class BindParamAspectImpl extends BindingAspect implements BindParamAspect {
 
     @Override
     @Pointcut("execution(* *(.., @com.jahnelgroup.flogger.BindParam (*), ..))")
@@ -35,10 +35,14 @@ public class BindParamAspectImpl implements BindParamAspect {
                 BindParam anno = parameters[i].getAnnotation(BindParam.class);
                 // Call toString() on the parameter and add it to the MDC
                 // with key= value() on annotation or the parameter's name
-                if (!anno.value().isEmpty()) {
-                    MDC.put(anno.value(), args[i].toString());
+                if (anno.expand()) {
+                    expandAndPut(args[i]);
                 } else {
-                    MDC.put(parameterNames[i], args[i].toString());
+                    if (!anno.value().isEmpty()) {
+                        put(anno.value(), args[i].toString());
+                    } else {
+                        put(parameterNames[i], args[i].toString());
+                    }
                 }
             }
         }

@@ -9,4 +9,6 @@ public @interface BindReturn {
 
     String value() default "";
 
+    boolean expand() default false;
+
 }
