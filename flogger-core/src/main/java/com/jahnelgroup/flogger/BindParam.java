@@ -9,4 +9,6 @@ public @interface BindParam {
 
     String value() default "";
 
+    boolean expand() default false;
+
 }
