@@ -39,4 +39,4 @@ The key, in which values are stored, in the MDC can be customized by the `value`
 
 ## License
 
-[MIT © Richard McRichface.](../LICENSE)
+[MIT © Jahnel Group](LICENSE)
