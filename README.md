@@ -19,7 +19,7 @@ Adding Flogger to a Spring Boot project is as simple as adding a dependency to `
 <dependency>
     <groupId>com.jahnelgroup.flogger</groupId>
     <artifactId>flogger-spring-boot</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
