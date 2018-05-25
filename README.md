@@ -1,4 +1,5 @@
 # Flogger
+[![Build Status](https://travis-ci.org/JahnelGroup/flogger.svg?branch=master)](https://travis-ci.org/JahnelGroup/flogger)
 > Whip your logs into shape!
 
 Flogger is an AspectJ library that provides the ability to easily add information to the MDC.
@@ -19,7 +20,7 @@ Adding Flogger to a Spring Boot project is as simple as adding a dependency to `
 <dependency>
     <groupId>com.jahnelgroup.flogger</groupId>
     <artifactId>flogger-spring-boot</artifactId>
-    <version>1.1.0</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
