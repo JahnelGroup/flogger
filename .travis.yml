@@ -1,1 +1,6 @@
 language: java
+
+script:
+  - mvn -f flogger-core/pom.xml clean install
+  - mvn -f flogger-spring-boot/pom.xml clean install
+  - mvn -f flogger-sample/pom.xml clean install
