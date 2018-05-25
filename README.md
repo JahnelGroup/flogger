@@ -1,4 +1,5 @@
 # Flogger
+[![Build Status](https://travis-ci.org/JahnelGroup/flogger.svg?branch=master)](https://travis-ci.org/JahnelGroup/flogger)
 > Whip your logs into shape!
 
 Flogger is an AspectJ library that provides the ability to easily add information to the MDC.
