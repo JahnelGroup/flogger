@@ -1,7 +1,7 @@
 # Flogger
 > Whip your logs into shape!
 
-Flogger is an AspectJ library that provides the ability to easily add information to your logging framwork's MDC.
+Flogger is an AspectJ library that provides the ability to easily add information to the MDC.
 
 ## Table of Contents
 
@@ -27,7 +27,7 @@ Adding Flogger to a Spring Boot project is as simple as adding a dependency to `
 
 Flogger can also be used in plain Java projects using the `aspectj-maven-plugin`.
 
-`flogger-sample` is an example project showing how to set it up properly.
+`flogger-sample` is an example project showing how to set it up.
 
 ## Usage
 
@@ -35,7 +35,7 @@ To add method parameters to the MDC, annotate them with `@BindParam`.
 
 To add the return value of a method to the MDC, annotate the method with `@BindReturn`.
 
-The key, in which values are stored, in the MDC can be customized by the `value` field on both annotations.
+The key in the MDC can be customized by the `value` field on both annotations.
 
 ### Expansion
 
