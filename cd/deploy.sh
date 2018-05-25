@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 if [ "$TRAVIS_BRANCH" = 'master' ] && [ "$TRAVIS_PULL_REQUEST" == 'false' ]; then
-    mvn deploy -P sign --settings cd/mvnsettings.xml
+    mvn deploy -P javadocs,sources,sign --settings cd/mvnsettings.xml
 fi
