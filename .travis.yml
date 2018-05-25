@@ -8,14 +8,14 @@ env:
   - secure: UMNb4zoFtdcyHm1cICtxtnxbqvdvp9175J4IMzp3Bx+NI6Y6pCXQ+7l6lviDcql+7YriIdEdBCwv6XgLNImkywn035Mh8KKDdIiBz2jfCQAzUsNncGvVs0E7dO5TPzgErn+xN7sUgGw8IlUKxK9OO0F+syPfqRELOGVBoZEtAr9pAUgiKdD0yl+TLTQbTkemRp5xeDII6q/csq6IUB4WfpKgWlWhfBaRoWgKAHwEAvg7v/mOd2X4Lt8bCD3ijRA6YMrFHqPYBLfS+cGnG12hoGoKguNw0liS34eL548x0fmvGNc9n9l9NP3QwUc5KIwLYR66NKLGgqRU0jGianKtVykv12O0q5CQMASQWyBl3vpdTbowkSmVVb2zif4UgNMFhVVOTHDeiTtfivmcVQY9vxTCnZIkMkLfDzSvmQSO2DPD1q6decYO73S1G+4cYcMMjCgB76Zh5aBC7MGFaqZv+jGC3UVMkMSnWmyF0YThB+RYlLYvwdozM0MzM+YuuiVoBudwDel22MZjm+NYZONfriBrILgZh6jJbFcqrHgnPKyv3MbOAioK9HNCW20h5mfoKA9DprtcpjHK0mvHt+q6df5dNh1F96ybvXEGu417vHMt+zC6lc/0sn6M4OFcf0t3AqDWkUlHEtjU8ckV7nBt0h7oUC2qUSCbZzbqsitI4hE=
 
 install:
-  - mvn -f flogger-core/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings mvnsettings.xml
-  - mvn -f flogger-spring-boot/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings mvnsettings.xml
-  - mvn -f flogger-sample/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings mvnsettings.xml
+  - mvn -f flogger-core/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings cd/mvnsettings.xml
+  - mvn -f flogger-spring-boot/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings cd/mvnsettings.xml
+  - mvn -f flogger-sample/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings cd/mvnsettings.xml
 
 script:
-  - mvn -f flogger-core/pom.xml test -B --settings mvnsettings.xml
-  - mvn -f flogger-spring-boot/pom.xml test -B --settings mvnsettings.xml
-  - mvn -f flogger-sample/pom.xml test -B --settings mvnsettings.xml
+  - mvn -f flogger-core/pom.xml test -B --settings cd/mvnsettings.xml
+  - mvn -f flogger-spring-boot/pom.xml test -B --settings cd/mvnsettings.xml
+  - mvn -f flogger-sample/pom.xml test -B --settings cd/mvnsettings.xml
 
 cache:
   directories:
