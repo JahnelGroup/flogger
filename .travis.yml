@@ -1,6 +1,26 @@
 language: java
 
+env:
+  global:
+  - secure: FhXKBYcowxez+4rlE2DY3jNovrmnZ2+0+4e1WoSw0HYWCpeS4EN2wpHvpwz+U5UYzYFjmXS/cwnNtMJU9Ay9nZxo1DkYw20RRakb/xG/22YQVrN15Ibwj75gs/OlsBs9r/ASM+V6c5wdg1ICGUzFMO73HUDnCs7sXGWTlUUXseEOSJS0fKElaJqHdXeeSe+DgE22lGjuvCu2FS5riCddfNGshBmk1AD3tEyiBbxFQZ65pwJFRXg+m/6xIyPgdagrEoWoReTfiPvcm1c/QHfIJin57DYH3KIb9yzfqDASdcywvrwxZIud6LhkG3A4MvcFug10PLi18vE1pzxT32OA0yrgjSltSgkXmUOvLf1fIrvWUhpcLR8UpqN9slAS0mzG+M17GeyjNBCj6RF0sSkihSgRXk8FegFnZorWaccmcPudxImqfWMwo0D+mKQX9RrSteu7myuWD4ZOOXZIV1JbMBzuCLIujy1MJBUiEe2Ccd7tlB+sMGEjR40hGQGBdNXLJSgNDKn7Z4kOrFPzymqi4vRoSf1g6rqfM7BuHCuQsa2y2UeuHrHd4SRJ92KYr0aZ8oy4FaQ3Yc84JQEV7UOqcz1UjHGemdLhqoM0AWPmiNrSYMYlHgTKFZhfOWpdFaFWPpYRnuM0DRV3pQEZBNhHivC7boed28MnydZqxqC2lNY=
+  - secure: i7MJpdAtwrT2T5GJaR/WLWI9ksL/ZlJqstJyW9I9KwvVN+b7ydPd0UvOaDW6Gd7f9d7mPSbMa/do7+2Du3ZuuNKbtfyfe75Bh2Hjf14oP+rHfGTxIt0ztw8vUE7dJu26+H0psuDd9jIE5nYy3NQD4ptuN2bw3xBObiBuj2GZgTp7s5g638UCWih4TVpU/LMChaj2YnNPz8qsPRX+fQHsF1cZ0AWZ9ErHnO7vZ2npF6vpd0qMFLxYYR/fNv62K4eXU/zRorvYLAk+1RTVFZmAq2CC0Xs4HtkAJ+mq1Sm1E2rsSRUvRUkfKRWTPnkQqJnXKQdEmgojQSMBC052nc+/kC7UBK0rcVHwPROQaid0GPAzmWI/3+QDWn60oXa7oSLQmdI4+Lgm4y5HQEe68vjwD1yJzBUulj4v7EJNyhLKls9Bdj2OSzE3rq4KYanZ0MhEHq8lGoMSOjbQdFN4ZR3yueau4EFVQLIZ2DjLS/RciKlDElVtJwsHnLtOsrTySU1jnys1Mp/RPpggTdUaWaBe1NvejceYD2/XtZFOs0eOE9Z0inVkGrDC6TvQsx7BXVLHVlYjU+aA7Hd/8qJZY9uawLjQ/FyCUXYV5CBX9kM5Bgr9cd90sRKk3nZpQwBHtCElPPapwrZrqG9hnIW5+hhhTSBBaGe+N15JsHb7ZmmIz4c=
+  - secure: VR4IOdF32VrGPUOSj4xuY5da5zGaMDtp/f5B6jzE+sHt8IiOiqWLoaselmyZuvTewZE+/cbi9huzDLh9drBNSIyhzBE7RscSEPfDIqze+csGrnz8joEuQVABQqp/yNtS2UXGhyM8n7Pmh0pQhFXgGrdfNrWyh1lQdnZIC8l2+SsfMQnQNUox8vw69D1P0DT6RNHtlMdZuG89Y1Le1XSzSSRxcIQFf+GSyF7eWptwqRlFcPTNFiETDgXqCUlkGKlAhLVZtnY6FUP24zOrQ7X03lP/kyQAZgAuGTV4eQgMR2lGpnYL4GAuTQV9hFwTOKcr6nyxjpu3/0xo2sOVAxao36/uHAEIaOB2Rss1OkXSvD+/Mx7hO0gSP/fcNKMO3oTAEEFQR3OX+MbrpBqExAmUCl0ueT+8Xigh+l0JV61UMGh9LHyxg1AzGv65yEJ86k2LWF6F8YYx6JJaQAi/P6zQB1RRG2T9R9ocQ7S/9RFcTgQ7lqhogYSpAKwI5XKfKYSnQuZSejtv49tptvfduDKXmSVQ4uGULdsvEnpZVtccNFqn1dHlc+zhEmiLEWneiCosxDJiRvlb3qI40XcftzAEZqwatOwJqJsMJ80CTlqam59Ggq6wZOw2eakdSh7zqkx0fF7TUzC0C321eseLi2Lkwg5tJNYkzun9hQSOxN6mXG0=
+  - secure: UMNb4zoFtdcyHm1cICtxtnxbqvdvp9175J4IMzp3Bx+NI6Y6pCXQ+7l6lviDcql+7YriIdEdBCwv6XgLNImkywn035Mh8KKDdIiBz2jfCQAzUsNncGvVs0E7dO5TPzgErn+xN7sUgGw8IlUKxK9OO0F+syPfqRELOGVBoZEtAr9pAUgiKdD0yl+TLTQbTkemRp5xeDII6q/csq6IUB4WfpKgWlWhfBaRoWgKAHwEAvg7v/mOd2X4Lt8bCD3ijRA6YMrFHqPYBLfS+cGnG12hoGoKguNw0liS34eL548x0fmvGNc9n9l9NP3QwUc5KIwLYR66NKLGgqRU0jGianKtVykv12O0q5CQMASQWyBl3vpdTbowkSmVVb2zif4UgNMFhVVOTHDeiTtfivmcVQY9vxTCnZIkMkLfDzSvmQSO2DPD1q6decYO73S1G+4cYcMMjCgB76Zh5aBC7MGFaqZv+jGC3UVMkMSnWmyF0YThB+RYlLYvwdozM0MzM+YuuiVoBudwDel22MZjm+NYZONfriBrILgZh6jJbFcqrHgnPKyv3MbOAioK9HNCW20h5mfoKA9DprtcpjHK0mvHt+q6df5dNh1F96ybvXEGu417vHMt+zC6lc/0sn6M4OFcf0t3AqDWkUlHEtjU8ckV7nBt0h7oUC2qUSCbZzbqsitI4hE=
+
+install:
+  - mvn -f flogger-core/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings mvnsettings.xml
+  - mvn -f flogger-spring-boot/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings mvnsettings.xml
+  - mvn -f flogger-sample/pom.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings mvnsettings.xml
+
 script:
-  - mvn -f flogger-core/pom.xml clean install
-  - mvn -f flogger-spring-boot/pom.xml clean install
-  - mvn -f flogger-sample/pom.xml clean install
+  - mvn -f flogger-core/pom.xml test -B --settings mvnsettings.xml
+  - mvn -f flogger-spring-boot/pom.xml test -B --settings mvnsettings.xml
+  - mvn -f flogger-sample/pom.xml test -B --settings mvnsettings.xml
+
+cache:
+  directories:
+    - ~/.m2/repository
+
+after_success:
+  - ./cd/before-deploy.sh
+  - ./cd/deploy.sh
