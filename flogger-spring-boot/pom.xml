@@ -6,7 +6,7 @@
 
     <groupId>com.jahnelgroup.flogger</groupId>
     <artifactId>flogger-spring-boot</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
 
     <name>flogger-spring-boot</name>
@@ -53,6 +53,33 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <profiles>
+        <profile>
+            <id>sign</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -74,7 +101,7 @@
         <dependency>
             <groupId>com.jahnelgroup.flogger</groupId>
             <artifactId>flogger-core</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.1</version>
         </dependency>
 
         <dependency>
