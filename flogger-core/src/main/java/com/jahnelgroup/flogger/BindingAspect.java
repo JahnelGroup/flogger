@@ -1,52 +1,38 @@
 package com.jahnelgroup.flogger;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public abstract class BindingAspect {
+import static com.jahnelgroup.flogger.utils.ReflectionUtils.*;
 
-    private static final String ILLEGAL_ACCESS_EXCEPTION_MSG = "Error accessing %s on class: %s";
-    private static final String INVOCATION_TARGET_EXCEPTION_MSG = "%s.%s threw an exception";
+public abstract class BindingAspect {
 
     protected void put(String key, String value) {
         MDC.put(key, value);
     }
 
-    protected void expandAndPut(Object arg) throws FloggerException {
-        for (Field field : arg.getClass().getDeclaredFields()) {
-            boolean isFieldAccessible = field.isAccessible();
-            if (!isFieldAccessible) {
-                field.setAccessible(true);
+    protected void expandAndPut(Object obj) throws FloggerException {
+        for (Field field : getBindableFieldsOnClass(obj.getClass())) {
+            String key = field.getName();
+            if (field.isAnnotationPresent(BindFields.Include.class)) {
+                BindFields.Include include = field.getDeclaredAnnotation(BindFields.Include.class);
+                if (!include.value().isEmpty()) {
+                    key = include.value();
+                }
             }
-            try {
-                put(field.getName(), field.get(arg).toString());
-            } catch (IllegalAccessException e) {
-                throw new FloggerException(String.format(ILLEGAL_ACCESS_EXCEPTION_MSG, field.getName(), arg.getClass()), e);
-            } finally {
-                field.setAccessible(isFieldAccessible);
-            }
+            put(key, getFieldValue(field, obj).toString());
         }
-        for (Method method : arg.getClass().getDeclaredMethods()) {
-            if (method.getParameterTypes().length == 0) {
-                boolean isMethodAccessible = method.isAccessible();
-                if (!isMethodAccessible) {
-                    method.setAccessible(true);
-                }
-                try {
-                    put(method.getName(), method.invoke(arg).toString());
-                } catch (IllegalAccessException e) {
-                    throw new FloggerException(String.format(ILLEGAL_ACCESS_EXCEPTION_MSG, method.getName(), arg.getClass()), e);
-                } catch (InvocationTargetException e) {
-                    throw new FloggerException(String.format(INVOCATION_TARGET_EXCEPTION_MSG, arg.getClass(), method.getName()), e);
-                } finally {
-                    method.setAccessible(isMethodAccessible);
+        for (Method method : getBindableMethodsOnClass(obj.getClass())) {
+            String key = method.getName();
+            if (method.isAnnotationPresent(BindMethods.Include.class)) {
+                BindMethods.Include include = method.getDeclaredAnnotation(BindMethods.Include.class);
+                if (!include.value().isEmpty()) {
+                    key = include.value();
                 }
             }
+            put(key, getMethodReturnValue(method, obj).toString());
         }
     }
 }

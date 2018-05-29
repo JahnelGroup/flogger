@@ -9,7 +9,9 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
-import static com.jahnelgroup.flogger.utils.ReflectionUtils.getMethod;
+import java.lang.reflect.Method;
+
+import static com.jahnelgroup.flogger.utils.ReflectionUtils.getMethodFromJointPoint;
 
 @Aspect
 public class BindReturnAspectImpl extends BindingAspect implements BindReturnAspect {
@@ -22,12 +24,16 @@ public class BindReturnAspectImpl extends BindingAspect implements BindReturnAsp
     @Override
     @AfterReturning(value = "anyMethodAnnotatedWithBindReturn(BindReturn)", argNames = "jp,retVal,BindReturn", returning = "retVal")
     public void addBoundReturnToMDC(JoinPoint jp, Object retVal, BindReturn BindReturn) throws FloggerException {
-        BindReturn bindReturn = getMethod(jp).getDeclaredAnnotation(BindReturn.class);
-        // Add the toString() value to the MDC
+        Method method = getMethodFromJointPoint(jp);
+        BindReturn bindReturn = method.getDeclaredAnnotation(BindReturn.class);
         if (bindReturn.expand()) {
             expandAndPut(retVal);
         } else {
-            put(bindReturn.value(), retVal.toString());
+            if (!bindReturn.value().isEmpty()) {
+                put(bindReturn.value(), retVal.toString());
+            } else {
+                put(method.getName(), retVal.toString());
+            }
         }
     }
 }

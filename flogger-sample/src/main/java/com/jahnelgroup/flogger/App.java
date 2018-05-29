@@ -14,7 +14,7 @@ public class App {
         return 231;
     }
 
-    public static void bar() {
+    public static void bar(@BindParam(value = "expandTest2", expand = true)ExpandedAll expandedAll) {
         logger.info("testing4");
     }
 
@@ -27,7 +27,7 @@ public class App {
         foo();
 
         logger.info("testing3");
-        bar();
+        bar(new ExpandedAll());
 
         logger.info("testing5");
         zot(new Expanded());
