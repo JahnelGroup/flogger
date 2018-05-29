@@ -20,7 +20,7 @@ Adding Flogger to a Spring Boot project is as simple as adding a dependency to `
 <dependency>
     <groupId>com.jahnelgroup.flogger</groupId>
     <artifactId>flogger-spring-boot</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
 </dependency>
 ```
 
@@ -42,8 +42,19 @@ The key in the MDC can be customized by the `value` field on both annotations.
 
 You can expand an object before it gets added to the MDC by setting `expand=true` in the annotations.
 
-This will add the object's field values and method values (only methods that take 0 parameters) 
-to the MDC intead of calling `.toString()` on the object.
+This will add the object's field values and method return values (only methods that take 0 parameters) 
+to the MDC instead of calling `.toString()` on the object.
+
+By default, every field and method on the object will be added to the MDC. This can be customized similar
+to Lombok's `@EqualsAndHashCode`.
+
+To exclude a field, annotate it with `@BindFields.Exclude`. To exclude a method, annotate it with `@BindMethods.Exclude`.
+
+You can specify exactly which fields are to be added to the MDC by annotating the object's class with 
+`@BindFields(onlyExplicityIncluded=true)` and then each field with `@BindFields.Include`. This works the same
+for methods using `@BindMethods` and `@BindMethods.Include`.
+
+The key in the MDC for expanded fields can be customized by the `value` field on both `@BindFields.Include` and `@BindMethods.Include`.
 
 #### Example
 
