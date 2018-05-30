@@ -16,8 +16,8 @@ public abstract class BindingAspect {
     protected void expandAndPut(Object obj) throws FloggerException {
         for (Field field : getBindableFieldsOnClass(obj.getClass())) {
             String key = field.getName();
-            if (field.isAnnotationPresent(BindFields.Include.class)) {
-                BindFields.Include include = field.getDeclaredAnnotation(BindFields.Include.class);
+            if (field.isAnnotationPresent(BindExpand.Include.class)) {
+                BindExpand.Include include = field.getDeclaredAnnotation(BindExpand.Include.class);
                 if (!include.value().isEmpty()) {
                     key = include.value();
                 }
@@ -26,8 +26,8 @@ public abstract class BindingAspect {
         }
         for (Method method : getBindableMethodsOnClass(obj.getClass())) {
             String key = method.getName();
-            if (method.isAnnotationPresent(BindMethods.Include.class)) {
-                BindMethods.Include include = method.getDeclaredAnnotation(BindMethods.Include.class);
+            if (method.isAnnotationPresent(BindExpand.Include.class)) {
+                BindExpand.Include include = method.getDeclaredAnnotation(BindExpand.Include.class);
                 if (!include.value().isEmpty()) {
                     key = include.value();
                 }

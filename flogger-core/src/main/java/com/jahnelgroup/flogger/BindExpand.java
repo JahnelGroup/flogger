@@ -5,17 +5,17 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Inherited
-public @interface BindMethods {
+public @interface BindExpand {
 
     boolean onlyExplicityIncluded() default false;
 
-    @Target(ElementType.METHOD)
+    @Target({ElementType.FIELD, ElementType.METHOD})
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Exclude {
 
     }
 
-    @Target({ElementType.METHOD})
+    @Target({ElementType.FIELD, ElementType.METHOD})
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Include {
 
