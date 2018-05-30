@@ -1,12 +1,11 @@
 package com.jahnelgroup.flogger;
 
-@BindFields(onlyExplicityIncluded = true)
-@BindMethods(onlyExplicityIncluded = true)
+@BindExpand(onlyExplicityIncluded = true)
 public class ExpandedAll {
 
-    @BindFields.Include("expandNameTest")
+    @BindExpand.Include("expandNameTest")
     private String expandMe = "expanded";
-    @BindFields.Include
+    @BindExpand.Include
     private int expandMe2 = 123;
 
     private String expandMe3() {

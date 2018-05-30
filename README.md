@@ -20,7 +20,7 @@ Adding Flogger to a Spring Boot project is as simple as adding a dependency to `
 <dependency>
     <groupId>com.jahnelgroup.flogger</groupId>
     <artifactId>flogger-spring-boot</artifactId>
-    <version>1.4.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -48,13 +48,12 @@ to the MDC instead of calling `.toString()` on the object.
 By default, every field and method on the object will be added to the MDC. This can be customized similar
 to Lombok's `@EqualsAndHashCode`.
 
-To exclude a field, annotate it with `@BindFields.Exclude`. To exclude a method, annotate it with `@BindMethods.Exclude`.
+To exclude a field/method, annotate it with `@BindExpand.Exclude`.
 
-You can specify exactly which fields are to be added to the MDC by annotating the object's class with 
-`@BindFields(onlyExplicityIncluded=true)` and then each field with `@BindFields.Include`. This works the same
-for methods using `@BindMethods` and `@BindMethods.Include`.
+You can specify exactly which fields/methods are to be added to the MDC by annotating the object's class with 
+`@BindExpand(onlyExplicityIncluded=true)` and then each method/field you wish to add with `@BindExpand.Include`.
 
-The key in the MDC for expanded fields can be customized by the `value` field on both `@BindFields.Include` and `@BindMethods.Include`.
+The key in the MDC for expanded fields/methods can be customized by the `value` field on `@BindExpand.Include`.
 
 #### Example
 
@@ -86,7 +85,7 @@ When `expand=false` the MDC contains :
 When `expand=true` the MDC contains:
 
 ```
-{field=field, method=method}
+{field=field, method=method, toString=expanded.toString()}
 ```
 
 ## License

@@ -1,7 +1,6 @@
 package com.jahnelgroup.flogger.utils;
 
-import com.jahnelgroup.flogger.BindFields;
-import com.jahnelgroup.flogger.BindMethods;
+import com.jahnelgroup.flogger.BindExpand;
 import com.jahnelgroup.flogger.FloggerException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -49,17 +48,17 @@ public final class ReflectionUtils {
 
     public static Stream<Field> getIncludedBindableFieldsOnClass(Class<?> clazz) {
         Stream<Field> fields = getFieldsOnClass(clazz);
-        return fields.filter(field -> field.isAnnotationPresent(BindFields.Include.class));
+        return fields.filter(field -> field.isAnnotationPresent(BindExpand.Include.class));
     }
 
     public static Stream<Field> filterOutExcludedFields(Stream<Field> fields) {
-        return fields.filter(field -> !field.isAnnotationPresent(BindFields.Exclude.class));
+        return fields.filter(field -> !field.isAnnotationPresent(BindExpand.Exclude.class));
     }
 
     public static List<Field> getBindableFieldsOnClass(Class<?> clazz) {
-        if (clazz.isAnnotationPresent(BindFields.class)) {
-            BindFields bindFields = clazz.getDeclaredAnnotation(BindFields.class);
-            if (bindFields.onlyExplicityIncluded()) {
+        if (clazz.isAnnotationPresent(BindExpand.class)) {
+            BindExpand bindExpand = clazz.getDeclaredAnnotation(BindExpand.class);
+            if (bindExpand.onlyExplicityIncluded()) {
                 return getIncludedBindableFieldsOnClass(clazz).collect(Collectors.toList());
             }
         }
@@ -68,17 +67,17 @@ public final class ReflectionUtils {
 
     public static Stream<Method> getIncludedBindableMethodsOnClass(Class<?> clazz) {
         Stream<Method> methods = getMethodsWithoutParametersOnClass(clazz);
-        return methods.filter(method -> method.isAnnotationPresent(BindMethods.Include.class));
+        return methods.filter(method -> method.isAnnotationPresent(BindExpand.Include.class));
     }
 
     public static Stream<Method> filterOutExcludedMethods(Stream<Method> methods) {
-        return methods.filter(method -> !method.isAnnotationPresent(BindMethods.Exclude.class));
+        return methods.filter(method -> !method.isAnnotationPresent(BindExpand.Exclude.class));
     }
 
     public static List<Method> getBindableMethodsOnClass(Class<?> clazz) {
-        if (clazz.isAnnotationPresent(BindMethods.class)) {
-            BindMethods bindMethods = clazz.getDeclaredAnnotation(BindMethods.class);
-            if (bindMethods.onlyExplicityIncluded()) {
+        if (clazz.isAnnotationPresent(BindExpand.class)) {
+            BindExpand bindExpand = clazz.getDeclaredAnnotation(BindExpand.class);
+            if (bindExpand.onlyExplicityIncluded()) {
                 return getIncludedBindableMethodsOnClass(clazz).collect(Collectors.toList());
             }
         }

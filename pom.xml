@@ -4,7 +4,7 @@
 
     <groupId>com.jahnelgroup.flogger</groupId>
     <artifactId>flogger-parent</artifactId>
-    <version>1.4.0</version>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
@@ -14,7 +14,6 @@
     <modules>
         <module>flogger-core</module>
         <module>flogger-spring-boot</module>
-        <module>flogger-sample</module>
     </modules>
 
     <licenses>
