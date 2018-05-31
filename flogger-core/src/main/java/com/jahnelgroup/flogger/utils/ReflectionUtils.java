@@ -29,7 +29,7 @@ public final class ReflectionUtils {
         } catch (NoSuchMethodException e) {
             throw new FloggerException(String.format(
                     NO_SUCH_METHOD_EXCEPTION_MSG, methodSignature.getName(),
-                    Arrays.toString(parameterTypes).substring(1, parameterTypes.length - 1),
+                    getParamString(parameterTypes),
                     className), e);
         }
     }
@@ -120,5 +120,18 @@ public final class ReflectionUtils {
             parameterNames[i] = parameters[i].getName();
         }
         return parameterNames;
+    }
+
+    private static String getParamString(Class[] parameterTypes) {
+        StringBuilder sb = new StringBuilder();
+        for (Class<?> clazz : parameterTypes) {
+            sb.append(clazz.getName());
+            sb.append(",");
+        }
+        String paramString = sb.toString();
+        if (paramString.endsWith(",")) {
+            paramString = paramString.substring(0, paramString.length() - 1);
+        }
+        return paramString;
     }
 }
