@@ -15,7 +15,7 @@
     <description>Sample Java project using Flogger</description>
 
     <properties>
-        <logback-classic.version>1.2.3</logback-classic.version>
+        <logback-classic.version>1.2.13</logback-classic.version>
 
         <main-class>com.jahnelgroup.flogger.App</main-class>
     </properties>
